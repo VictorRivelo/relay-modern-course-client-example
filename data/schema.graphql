@@ -1,83 +1,173 @@
-type Mutation {
-  UserChangePassword(input: UserChangePasswordInput!): UserChangePasswordPayload
-  UserLoginWithEmail(input: UserLoginWithEmailInput!): UserLoginWithEmailPayload
-  UserRegisterWithEmail(
-    input: UserRegisterWithEmailInput!
-  ): UserRegisterWithEmailPayload
-
-  UserCreatePost(input: UserCreatePostInput!): UserCreatePostPayload
+# The root of all... queries
+"""
+The root of all... queries
+"""
+type Query {
+  randomUser: User!
+  post(id: ID!): Post
+  feed(first: Int, after: String, last: Int, before: String): PostConnection
+  
+  # Fetches an object given its ID
+  """
+  Fetches an object given its ID
+  """
+  node(
+  # The ID of an object
+  """
+  The ID of an object
+  """
+  id: ID!): Node
+  me: User
+  user(id: ID!): User
+  users(after: String, first: Int, before: String, last: Int, search: String): UserConnection
 }
 
+type Post implements Node {
+  id: ID!
+  _id: String!
+  title: String!
+  description: String
+  authorId: String!
+  author: User!
+}
+
+type Mutation {
+  UserCreatePost(input: UserCreatePostInput!): UserCreatePostPayload
+  UserChangePassword(input: UserChangePasswordInput!): UserChangePasswordPayload
+  UserLoginWithEmail(input: UserLoginWithEmailInput!): UserLoginWithEmailPayload
+  UserRegisterWithEmail(input: UserRegisterWithEmailInput!): UserRegisterWithEmailPayload
+}
+
+input UserCreatePostInput {
+  title: String!
+  description: String
+  clientMutationId: String
+}
+
+type UserCreatePostPayload {
+  error: String
+  post: Post
+  clientMutationId: String
+}
+
+type PostConnection {
+  count: Int!
+  
+  # A count of the total number of objects in this connection, ignoring pagination.
+   #   This allows a client to fetch the first five objects by passing "5" as the
+   #   argument to "first", then fetch the total count so it could display "5 of 83",
+   #   for example.
+  """
+  A count of the total number of objects in this connection, ignoring pagination.
+    This allows a client to fetch the first five objects by passing "5" as the
+    argument to "first", then fetch the total count so it could display "5 of 83",
+    for example.
+  """
+  totalCount: Int!
+  
+  # Offset from start
+  """
+  Offset from start
+  """
+  startCursorOffset: Int!
+  
+  # Offset till end
+  """
+  Offset till end
+  """
+  endCursorOffset: Int!
+  
+  # Information to aid in pagination.
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfoExtended!
+  
+  # A list of edges.
+  """
+  A list of edges.
+  """
+  edges: [PostEdge]!
+}
+
+
+# An edge in a connection.
+"""
+An edge in a connection.
+"""
+type PostEdge {
+  
+  # The item at the end of the edge
+  """
+  The item at the end of the edge
+  """
+  node: Post!
+  
+  # A cursor for use in pagination
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+}
+
+
+# An object with an ID
 """
 An object with an ID
 """
 interface Node {
+  
+  # The id of the object.
   """
   The id of the object.
   """
   id: ID!
 }
 
+
+# Information about pagination in a connection.
 """
 Information about pagination in a connection.
 """
 type PageInfoExtended {
+  
+  # When paginating forwards, are there more items?
   """
   When paginating forwards, are there more items?
   """
   hasNextPage: Boolean!
-
+  
+  # When paginating backwards, are there more items?
   """
   When paginating backwards, are there more items?
   """
   hasPreviousPage: Boolean!
-
+  
+  # When paginating backwards, the cursor to continue.
   """
   When paginating backwards, the cursor to continue.
   """
   startCursor: String
-
+  
+  # When paginating forwards, the cursor to continue.
   """
   When paginating forwards, the cursor to continue.
   """
   endCursor: String
 }
 
-"""
-The root of all... queries
-"""
-type Query {
-  """
-  Fetches an object given its ID
-  """
-  node(
-    """
-    The ID of an object
-    """
-    id: ID!
-  ): Node
-  me: User
-  user(id: ID!): User
-  users(
-    after: String
-    first: Int
-    before: String
-    last: Int
-    search: String
-  ): UserConnection
-
-  post(id: ID!): Post
-  feed(first: Int, after: String, last: Int, before: String): PostConnection
-}
-
 type Subscription {
   UserAdded: UserAddedPayload
 }
 
+
+# User data
 """
 User data
 """
 type User implements Node {
+  
+  # The ID of an object
   """
   The ID of an object
   """
@@ -94,7 +184,8 @@ type UserAddedPayload {
 
 input UserChangePasswordInput {
   oldPassword: String!
-
+  
+  # user new password
   """
   user new password
   """
@@ -108,15 +199,23 @@ type UserChangePasswordPayload {
   clientMutationId: String
 }
 
+
+# A connection to a list of items.
 """
 A connection to a list of items.
 """
 type UserConnection {
+  
+  # Number of items in this connection
   """
   Number of items in this connection
   """
   count: Int!
-
+  
+  # A count of the total number of objects in this connection, ignoring pagination.
+   #   This allows a client to fetch the first five objects by passing "5" as the
+   #   argument to "first", then fetch the total count so it could display "5 of 83",
+   #   for example.
   """
   A count of the total number of objects in this connection, ignoring pagination.
     This allows a client to fetch the first five objects by passing "5" as the
@@ -124,37 +223,46 @@ type UserConnection {
     for example.
   """
   totalCount: Int!
-
+  
+  # Offset from start
   """
   Offset from start
   """
   startCursorOffset: Int!
-
+  
+  # Offset till end
   """
   Offset till end
   """
   endCursorOffset: Int!
-
+  
+  # Information to aid in pagination.
   """
   Information to aid in pagination.
   """
   pageInfo: PageInfoExtended!
-
+  
+  # A list of edges.
   """
   A list of edges.
   """
   edges: [UserEdge]!
 }
 
+
+# An edge in a connection.
 """
 An edge in a connection.
 """
 type UserEdge {
+  
+  # The item at the end of the edge
   """
   The item at the end of the edge
   """
   node: User!
-
+  
+  # A cursor for use in pagination
   """
   A cursor for use in pagination
   """
@@ -186,69 +294,8 @@ type UserRegisterWithEmailPayload {
   clientMutationId: String
 }
 
-type Post implements Node {
-  id: ID!
-  _id: String!
-  title: String!
-  description: String
-  authorId: String!
-  author: User!
-}
-
-input UserCreatePostInput {
-  title: String!
-  description: String
-  clientMutationId: String
-}
-
-type UserCreatePostPayload {
-  error: String
-  post: Post
-  clientMutationId: String
-}
-
-type PostConnection {
-  count: Int!
-  """
-  A count of the total number of objects in this connection, ignoring pagination.
-    This allows a client to fetch the first five objects by passing "5" as the
-    argument to "first", then fetch the total count so it could display "5 of 83",
-    for example.
-  """
-  totalCount: Int!
-
-  """
-  Offset from start
-  """
-  startCursorOffset: Int!
-
-  """
-  Offset till end
-  """
-  endCursorOffset: Int!
-
-  """
-  Information to aid in pagination.
-  """
-  pageInfo: PageInfoExtended!
-
-  """
-  A list of edges.
-  """
-  edges: [PostEdge]!
-}
-
-"""
-An edge in a connection.
-"""
-type PostEdge {
-  """
-  The item at the end of the edge
-  """
-  node: Post!
-
-  """
-  A cursor for use in pagination
-  """
-  cursor: String!
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
 }

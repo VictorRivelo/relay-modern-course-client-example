@@ -13,9 +13,10 @@ const AppQR = props => {
           environment={Environment}
           query={graphql`
             query AppQR_Query {
-              me {
+              randomUser {
                 name
                 id
+                email                
               }
             }
           `}
@@ -29,8 +30,9 @@ const AppQR = props => {
               if (props) {
                 return (
                 <>
-                  <span>LoggedUser ID: {props.me && props.me.id ? props.me.id : null}</span>
-                  <span>LoggedUser Name: {props.me && props.me.name ? props.me.name : null}</span>
+                  <p>LoggedUser ID: {props.randomUser && props.randomUser.id ? props.randomUser.id : null}</p>
+                  <p>LoggedUser Name: {props.randomUser && props.randomUser.name ? props.randomUser.name : null}</p>
+                  <p>LoggedUser Email: {props.randomUser && props.randomUser.email ? props.randomUser.email : null}</p>      
                 </>
                   );
               }
