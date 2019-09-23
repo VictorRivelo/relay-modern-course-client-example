@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import wrapperCreateQueryRenderer from './WrapperCreateQueryRenderer';
+import graphql from 'babel-plugin-relay/macro';
 import {
-  graphql,
   QueryRenderer,
   createFragmentContainer
 } from 'react-relay';
