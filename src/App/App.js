@@ -6,9 +6,7 @@ import { Link } from 'found';
 import { Environment } from '../relay/index';
 import { createBrowserRouter } from 'found';
 
-const App = (props) => {
-  
-  console.log('ops');
+const App = (props) => {  
   return (
     <div className="App">
       <header className="App-header">
@@ -20,8 +18,9 @@ const App = (props) => {
       <div>
       <ul>
       <li><Link to='/'>Home</Link></li>
-        <li><Link to='/03-query-renderer' exact>Aula 3 - QueryRenderer</Link></li>
-        <li><Link to='/03a-query-renderer-variables' exact>Aula 3a - QueryRendererVariables</Link></li>
+        <li><Link to='/create-user' >CreateUser</Link></li>
+        <li><Link to='/03-query-renderer' >Aula 3 - QueryRenderer</Link></li>
+        <li><Link to='/03a-query-renderer-variables' >Aula 3a - QueryRendererVariables</Link></li>
         <li><Link to='/03b-create-query-renderer'>Aula 3b - CreateQueryRenderer</Link></li>
         <li><Link to='/04-fragments'>Aula 4 - Fragments</Link></li>
         <li><Link to='/05-compose-fragments'>Aula 5 - ComposeFragments</Link></li>

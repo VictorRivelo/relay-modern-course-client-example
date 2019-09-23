@@ -5,8 +5,6 @@ import { QueryRenderer } from 'react-relay';
 import { Environment } from '../../relay/index';
 
 const AppQR = props => {
-  console.log(' dsadsadd')
-  
   
   return (
     <QueryRenderer

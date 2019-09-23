@@ -15,8 +15,8 @@
     "react-scripts": "2.1.5"
   },
   "devDependencies": {
-    "babel-plugin-relay": "^2.0.0",
-    "graphql": "^14.1.1",
+    "babel-plugin-relay": "^6.0.0",
+    "graphql": "^14.5.7",
     "relay-compiler": "^6.0.0",
     "relay-config": "^6.0.0"
   },

@@ -9,10 +9,10 @@ import { createBrowserRouter } from 'found';
 const MainPage = (props) => {
   
   return (
-    <div>
-      <p>Clique na aula que gostaria de testar</p>
-    </div>
-  );
-};
+    <>            
+        {<p>Clique na aula que gostaria de testar</p>}      
+    </>
+  )
+}
 
 export default MainPage;
