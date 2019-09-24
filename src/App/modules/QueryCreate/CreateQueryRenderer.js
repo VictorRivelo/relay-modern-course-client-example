@@ -1,46 +1,43 @@
-import React, {useState} from 'react';
-import wrapperCreateQueryRenderer from './WrapperCreateQueryRenderer';
-import {
-  graphql,
-  QueryRenderer,
-  createFragmentContainer
-} from 'react-relay';
+// import React, {useState} from 'react';
+// import wrapperCreateQueryRenderer from './WrapperCreateQueryRenderer';
+// import graphql from 'babel-plugin-relay/macro';
+// import {  
+//   QueryRenderer,
+//   createFragmentContainer
+// } from 'react-relay';
 
-const createQueryRenderer = () => {
-    
-    const Post = ({ post }) => (
-      <div>
-        <span>{post.title}</span>
-        <span>{post.description}</span>
-      </div>
-  );
+// const Post = ({ post }) => (
+//   <div>
+//     <span>{post.title}</span>
+//     <span>{post.description}</span>
+//   </div>
+// );
 
-    const PostFragmentContainer = createFragmentContainer(
-    Post, {
-    post: graphql`
-      fragment CreateQueryRenderer_post on Post {
-        id
-        title
-        description
-      },
-    `});
+// const PostFragmentContainer = createFragmentContainer(
+//   Post, {
+//     post: graphql`
+//       fragment CreateQueryRenderer_post on Post {
+//         id
+//         title
+//         description
+//       },
+//   `}
+// );
 
-    return (  
-        <>        
-        {<p>Sua query é: </p>}
-        </>
-        /* {wrapperCreateQueryRenderer(PostFragmentContainer, createQueryRenderer,  
-                {query : (graphql`query CreateQueryRenderer_Post {
-                                    query MainQuery(id: ID) {
-                                      post(id: $id) {
-                                      ...Post_post         
-                                    }                                                                   
-                                  }
-                                `), 
-                queriesParams : ("post-e17c2879-d643-4105-bece-e0ff5dbfa619")})}       
-        </> */
-      )
+// const createQueryRenderer = (props) => {    
+//   return (
+//     <>
+//       <p>Sua query é:</p>      
+//     </>
+//   )
+// }
 
-}
-
-export default createQueryRenderer;
+// const withQ = wrapperCreateQueryRenderer(PostFragmentContainer,  
+//   {query : graphql`query CreateQueryRenderer_Query ($id: ID!) {
+//                         post(id: $id) {
+//                         ...CreateQueryRenderer_post
+//                       }
+//                     }
+//                   `,                          
+//   queriesParams : {id :"user-173830d3-5a7b-46f1-84cb-e0c5a5613010"}});
+// export default withQ;

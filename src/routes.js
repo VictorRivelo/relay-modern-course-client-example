@@ -4,11 +4,12 @@ import React from 'react';
 import App from './App/App';
 import MainPage from './App/MainPage';
 import Building from './App/Building';
+import BugComponent from './App/BugComponent';
 
 
 import AppQR from './App/modules/AppQR';
 import Fragments from './App/modules/Fragments';
-import ComposeFragments from './App/modules/ComposeFragments';
+import ComposeFragment from './App/modules/ComposeFragments/ComposeFragment';
 import QueryRendererVariables from './App/modules/QueryRendererVariables';
 import CreateQueryRenderer from './App/modules/QueryCreate/CreateQueryRenderer';
 import CreateUser from './App/CreateUser';
@@ -19,7 +20,7 @@ export default makeRouteConfig(
         <Route path="/create-user" Component={CreateUser} />
         <Route path="/03-query-renderer" Component={AppQR} />
         <Route path="/03a-query-renderer-variables" Component={QueryRendererVariables} />        
-        <Route path="/03b-create-query-renderer" Component={CreateQueryRenderer} />
+        <Route path="/03b-create-query-renderer" Component={BugComponent} />
         <Route path="/04-fragments" Component={Fragments} />
         <Route path="/05-compose-fragments" Component={Building} />
         <Route path="/06-refetch-container" Component={Building} />
@@ -33,8 +34,6 @@ export default makeRouteConfig(
         <Route path="/08f-network-observable" Component={Building} />
         <Route path="/09-argument-definition" Component={Building} />
         <Route path="/10-include-skip" Component={Building} />
-        <Route path="/11-simulating-defer" Component={Building} />
-
-
+        <Route path="/11-simulating-defer" Component={Building} />    
     </Route>
   );

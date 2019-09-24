@@ -1,7 +1,6 @@
 import * as React from 'react';
 import hoistStatics from 'hoist-non-react-statics';
 import { QueryRenderer } from 'react-relay';
-import graphql from 'babel-plugin-relay/macro';
 import  { GraphQLTaggedNode, Variables } from 'react-relay';
 import Environment from '../../../relay/Environment';
 import ErrorView from '../../../relay/ErrorView';
@@ -17,8 +16,8 @@ export default function wrapperCreateQueryRenderer(
     render() {
       const variables = queriesParams
         ? queriesParams(this.props) :
-        config.variables;
-      return (
+        config.variables;        
+      return (        
         <QueryRenderer
           environment={Environment}
           query={query}

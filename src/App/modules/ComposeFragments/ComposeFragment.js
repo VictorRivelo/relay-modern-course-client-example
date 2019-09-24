@@ -1,6 +1,6 @@
 import React from 'react';
+import graphql from 'babel-plugin-relay/macro';
 import {
-  graphql,
   createFragmentContainer
 } from 'react-relay';
 const Post = ({ post }) => (
@@ -12,7 +12,7 @@ const Post = ({ post }) => (
 const PostFragmentContainer = createFragmentContainer(
   Post, {
   post: graphql`
-    fragment Post_post on Post {
+    fragment ComposeFragment_post on Post {
       id
       title
       description
@@ -35,12 +35,12 @@ const Feed = ({ query }) => {
 const FeedFragmentContainer = createFragmentContainer(
   Feed, {
   query: graphql`
-    fragment Feed_query on Query {
+    fragment ComposeFragment_query on Query {
       feed(first: 10) {
         edges {
           node {
             id
-            ...Post_post
+            ...ComposeFragment_post
           }
         }
       }
